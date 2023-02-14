@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--配置mysql驱动-->
+    <classPathEntry location="E:\maven_repository\mysql\mysql-connector-java\8.0.19\mysql-connector-java-8.0.19.jar" />
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <plugin type="org.mybatis.generator.plugins.MapperPlugin">
+            <!--通用Mapper使用到的，生成的Mapper会继承该接口-->
+            <property name="mappers" value="com.joeshaw.tenant_demo.mapper.base-mapper"/>
+            <property name="caseSensitive" value="true"/>
+            <property name="mapperAnnotation" value="true"/>
+        </plugin>
+        <jdbcConnection driverClass="com.cj.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.6.104:3306/db_test?useUnicode=true"
+                        userId="root"
+                        password="hckj@)2017">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+            <property name="useInformationSchema" value="true"/>
+        </jdbcConnection>
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="true" />
+        </javaTypeResolver>
+        <!--相对路径根据自己的项目调整-->
+        <javaModelGenerator targetPackage="com.joeshaw.tenant_demo.model" targetProject="../../java/"/>
+        <javaClientGenerator targetPackage="com.joeshaw.tenant_demo.mapper" targetProject="../../java/" type="SIMPLEMAPPER" />
+    </context>
+</generatorConfiguration>
